@@ -537,9 +537,9 @@ extension TLPhotosPickerViewController: UIImagePickerControllerDelegate, UINavig
         guard !maxCheck() else { return }
         let picker = UIImagePickerController()
         picker.sourceType = .camera
-        //picker.mediaTypes = [kUTTypeImage as String]
+        picker.mediaTypes = [kUTTypeMovie as String]
         //if self.configure.allowedVideoRecording {
-            picker.mediaTypes.append(kUTTypeMovie as String)
+            //picker.mediaTypes.append(kUTTypeMovie as String)
             NSLog("movie")
             picker.videoQuality = self.configure.recordingVideoQuality
             if let duration = self.configure.maxVideoDuration {
