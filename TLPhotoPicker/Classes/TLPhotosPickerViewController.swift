@@ -51,7 +51,7 @@ extension TLPhotosPickerLogDelegate {
 
 
 public struct TLPhotosPickerConfigure {
-    public var defaultCameraRollTitle = "Camera Roll"
+    public var defaultCameraRollTitle = "Camera Rollz"
     public var tapHereToChange = "Tap here to change"
     public var cancelTitle = "Cancel"
     public var doneTitle = "Done"
@@ -63,13 +63,13 @@ public struct TLPhotosPickerConfigure {
     public var allowedVideo = true
     public var allowedAlbumCloudShared = false
     public var allowedVideoRecording = true
-    public var recordingVideoQuality: UIImagePickerController.QualityType = .typeMedium
-    public var maxVideoDuration:TimeInterval? = nil
+    public var recordingVideoQuality: UIImagePickerController.QualityType = .typeHigh
+    public var maxVideoDuration:TimeInterval? = 600
     public var autoPlay = true
-    public var muteAudio = true
+    public var muteAudio = false
     public var mediaType: PHAssetMediaType? = nil
     public var numberOfColumn = 3
-    public var singleSelectedMode = false
+    public var singleSelectedMode = true
     public var maxSelectedAssets: Int? = nil
     public var fetchOption: PHFetchOptions? = nil
     public var selectedColor = UIColor(red: 88/255, green: 144/255, blue: 255/255, alpha: 1.0)
@@ -178,6 +178,7 @@ open class TLPhotosPickerViewController: UIViewController {
     }
     
     public init() {
+        self.configure.mediaType = .video
         super.init(nibName: "TLPhotosPickerViewController", bundle: TLBundle.bundle())
     }
     
@@ -536,14 +537,14 @@ extension TLPhotosPickerViewController: UIImagePickerControllerDelegate, UINavig
         guard !maxCheck() else { return }
         let picker = UIImagePickerController()
         picker.sourceType = .camera
-        picker.mediaTypes = [kUTTypeImage as String]
-        if self.configure.allowedVideoRecording {
+        //picker.mediaTypes = [kUTTypeImage as String]
+        //if self.configure.allowedVideoRecording {
             picker.mediaTypes.append(kUTTypeMovie as String)
             picker.videoQuality = self.configure.recordingVideoQuality
             if let duration = self.configure.maxVideoDuration {
                 picker.videoMaximumDuration = duration
             }
-        }
+        //}
         picker.allowsEditing = false
         picker.delegate = self
         self.present(picker, animated: true, completion: nil)
