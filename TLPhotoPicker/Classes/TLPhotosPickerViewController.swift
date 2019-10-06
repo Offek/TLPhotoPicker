@@ -51,10 +51,10 @@ extension TLPhotosPickerLogDelegate {
 
 
 public struct TLPhotosPickerConfigure {
-    public var defaultCameraRollTitle = "Camera Rollz"
+    public var defaultCameraRollTitle = "Camera Roll"
     public var tapHereToChange = "Tap here to change"
     public var cancelTitle = "Cancel"
-    public var doneTitle = "Done"
+    public var doneTitle = "Select"
     public var emptyMessage = "No albums"
     public var emptyImage: UIImage? = nil
     public var usedCameraButton = true
@@ -540,6 +540,7 @@ extension TLPhotosPickerViewController: UIImagePickerControllerDelegate, UINavig
         //picker.mediaTypes = [kUTTypeImage as String]
         //if self.configure.allowedVideoRecording {
             picker.mediaTypes.append(kUTTypeMovie as String)
+            NSLog("movie")
             picker.videoQuality = self.configure.recordingVideoQuality
             if let duration = self.configure.maxVideoDuration {
                 picker.videoMaximumDuration = duration
